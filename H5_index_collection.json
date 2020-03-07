@@ -1,0 +1,269 @@
+{
+	"info": {
+		"_postman_id": "29098a64-3093-499a-b6ad-7ebe117dce60",
+		"name": "H5首页",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "新增首页菜单",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5fe3a0e0-a54c-49ab-aed2-12fca09e9de6",
+						"exec": [
+							"var jsonData=JSON.parse(responseBody);",
+							"//var exceptCode=data[\"exceptCode\"];",
+							"",
+							"tests[\"断言响应的code与期望一致\"]=jsonData.code==200;",
+							"",
+							"postman.setNextRequest(\"新增楼层\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3cd9cd84-8ee1-4c1e-b75c-f994783b7f05",
+						"exec": [
+							"postman.setEnvironmentVariable(\"menuName\",data[\"menuName\"]);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*",
+						"type": "text"
+					},
+					{
+						"key": "ADMIN-TOKEN",
+						"value": "{{ADMIN_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"linkType\": \"url\",\n    \"menuIcon\": \"/group1/M00/00/3D/wKgAD13todqASaZXAAJYwS7aF-k146.png\",\n    \"menuName\": \"{{menuName}}\",\n    \"url\": \"http://b2b2c.leimingtech.com/admin/#/mgoperative-homeset-indexfile\",\n    \"sort\": 0,\n    \"showFlag\": \"1\"\n}"
+				},
+				"url": {
+					"raw": "{{Host}}/admin-api/mobile/indexmenu",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"admin-api",
+						"mobile",
+						"indexmenu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "新增楼层",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "19d907e2-2b4f-4ca0-b668-bd3e3c5fdf85",
+						"exec": [
+							"var jsonData=JSON.parse(responseBody);",
+							"//var exceptCode=data[\"exceptCode\"];",
+							"tests[\"断言响应的code与期望一致\"]=jsonData.code==200;",
+							"",
+							"postman.setNextRequest(\"H5账号密码登录\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "f32ad825-3add-4763-a82f-eebbcb61d317",
+						"exec": [
+							"postman.setEnvironmentVariable(\"floorName\",data[\"floorName\"]);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*",
+						"type": "text"
+					},
+					{
+						"key": "ADMIN-TOKEN",
+						"value": "{{ADMIN_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"classIds\": \"\",\n    \"jiaoyan\": \"url\",\n    \"actionType\": \"searchByKeyWord\",\n    \"sort\": 0,\n    \"isShow\": \"1\",\n    \"actionParams\": \"123456\",\n    \"floorCode\": \"\",\n    \"floorName\": \"{{floorName}}\",\n    \"goodsClassName\": \"\",\n    \"goodsName\": \"\",\n    \"nameIcon\": \"\",\n    \"webFloorLinkConfigDTOList\": [\n        {\n            \"classIds\": \"\",\n            \"gcName\": \"\",\n            \"imgMarking\": \"0\",\n            \"imgUrl\": \"/group1/M00/00/3D/wKgAD13totyAPQxUAABgZwMoxTg26.jpeg\",\n            \"linkType\": \"searchByKeyWord\",\n            \"subTitle\": \"\",\n            \"title\": \"1\",\n            \"typeKeyWord\": \"1\",\n            \"goodsName\": \"\"\n        },\n        {\n            \"classIds\": \"\",\n            \"gcName\": \"\",\n            \"imgMarking\": \"1\",\n            \"imgUrl\": \"/group1/M00/00/3D/wKgAD13touqAXtLDAAAVrPHzrY4876.png\",\n            \"linkType\": \"searchByKeyWord\",\n            \"subTitle\": \"\",\n            \"title\": \"2\",\n            \"typeKeyWord\": \"2\",\n            \"goodsName\": \"\"\n        },\n        {\n            \"classIds\": \"\",\n            \"gcName\": \"\",\n            \"imgMarking\": \"2\",\n            \"imgUrl\": \"/group1/M00/00/3D/wKgAD13toveAMAcrAAAbGmpKSno17.jpeg\",\n            \"linkType\": \"searchByKeyWord\",\n            \"subTitle\": \"\",\n            \"title\": \"3\",\n            \"typeKeyWord\": \"3\",\n            \"goodsName\": \"\"\n        },\n        {\n            \"classIds\": \"1191721536113917953,1191917406797176834,1191917673575882754\",\n            \"gcName\": \"\",\n            \"imgMarking\": \"3\",\n            \"imgUrl\": \"/group1/M00/00/3D/wKgAD13towGAJz3EAAAJPYaBxVM212.png\",\n            \"linkType\": \"searchGoodsByClass\",\n            \"subTitle\": \"\",\n            \"title\": \"4\",\n            \"typeKeyWord\": \"1191917673575882754\",\n            \"goodsName\": \"\"\n        },\n        {\n            \"classIds\": \"\",\n            \"gcName\": \"\",\n            \"imgMarking\": \"4\",\n            \"imgUrl\": \"/group1/M00/00/3D/wKgAD13toxCAKen9AAAVsWaxTS4170.png\",\n            \"linkType\": \"link\",\n            \"subTitle\": \"\",\n            \"title\": \"5\",\n            \"typeKeyWord\": \"http://b2b2c.leimingtech.com/admin/#/mgoperative-homeset-floor\",\n            \"goodsName\": \"\"\n        },\n        {\n            \"classIds\": \"\",\n            \"gcName\": \"\",\n            \"imgMarking\": \"5\",\n            \"imgUrl\": \"/group1/M00/00/3D/wKgAD13toyKAD6CTAAAOYu2xxe420.jpeg\",\n            \"linkType\": \"goodsDetail\",\n            \"subTitle\": \"\",\n            \"title\": \"6\",\n            \"typeKeyWord\": \"1202873452017516546\",\n            \"goodsName\": \"\"\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "{{Host}}/admin-api/webfloor",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"admin-api",
+						"webfloor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "H5账号密码登录 ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "23b74e26-5aa1-4dc1-b876-d45b1ff2768b",
+						"exec": [
+							"var jsonData=JSON.parse(responseBody);",
+							"//pm.globals.set(\"Authorization\", jsonData.data);",
+							"pm.environment.set(\"Authorization\", jsonData.data);",
+							"",
+							"var exceptCode=data[\"exceptCode\"];",
+							"tests[\"断言响应的code与期望一致\"]=jsonData.code==exceptCode;",
+							"",
+							"postman.setNextRequest(\"H5首页\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "X",
+							"value": "220",
+							"type": "text"
+						},
+						{
+							"key": "Y",
+							"value": "68",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "mm0A8wlZrWpJRE7kgHWKJXhcao2r50p2gx1RA/HvYVOdDBOJm691vlghj5qnq2k2qZ0OZIjJIDR7fsvkFL4SyZgPYC6vXMGD5kiMytqr2voQxdFDa6sOOpykcLmSblTt30es30QcEsgx3UvscZpvNG8lqM3LFFXDyP4gRSK47zQ=",
+							"type": "text"
+						},
+						{
+							"key": "token",
+							"value": "da263c8673354f78a78413acbacc4cbc",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "18602295374",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Host}}/front/auth/oauth/gettoken",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"front",
+						"auth",
+						"oauth",
+						"gettoken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "H5首页",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f8f9e609-eb45-485b-8605-e057b6477791",
+						"exec": [
+							"var jsonData=JSON.parse(responseBody);",
+							"var floorName=data[\"floorName\"];",
+							"var menuName=data[\"menuName\"];",
+							"var list=jsonData.data.webFloorAndLinkDTOList;",
+							"",
+							"if(jsonData.code==200){",
+							"    ",
+							"//循环遍历list下的json格式数据",
+							"for(var i=0;i<list.length;i++){",
+							"    // console.log(list[i].goodsName);",
+							"    if(list[i].floorName==floorName){",
+							"      tests[\"check floor\"]=list[i].floorName==floorName;",
+							"    }",
+							"    ",
+							" }",
+							"}",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Host}}/front/operation/index/h5",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"front",
+						"operation",
+						"index",
+						"h5"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
