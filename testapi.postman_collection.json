@@ -1,0 +1,102 @@
+{
+	"info": {
+		"_postman_id": "5d0dc73c-180c-4f7f-a38b-b74b4fdfb72b",
+		"name": "testapi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "{{host}}/zentao/user-login.html",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7e0e45ee-1f01-4a5f-bfdd-6cfbaeaa6f05",
+						"exec": [
+							"//读取文件的username列内容\r",
+							"postman.setEnvironmentVariable(\"account\",data[\"username\"]);\r",
+							"//读取文件的password列内容\r",
+							"postman.setEnvironmentVariable(\"password\",data[\"password\"]);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "c8a308aa-59e2-4fb5-a97b-f2e6333233dc",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "account",
+							"value": "{{account}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "text"
+						},
+						{
+							"key": "referer",
+							"value": "http://bug.leimingtech.com/zentao/my/",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/zentao/user-login.html",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"zentao",
+						"user-login.html"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
